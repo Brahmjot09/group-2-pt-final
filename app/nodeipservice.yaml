@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: group5-node-service
+  labels:
+    app: group5
+spec:
+  selector:
+    app: group5
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 81
+      targetPort: 81
+      nodePort: 30000

@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-group5-deployment
+  labels:
+    app: group5
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: group5
+  template:
+    metadata:
+      labels:
+        app: group5
+    spec:
+      serviceAccountName: clo835-group5
+      containers:
+      - name: webapp-group5-deployment
+        image: 992332505002.dkr.ecr.us-east-1.amazonaws.com/pt-final:app-image
+        ports:
+        - containerPort: 81
+        env:
+        - name: DBHOST
+          value: 192.168.8.154
+        - name: DBPORT
+          value: "3306"
+        - name: DBPWD
+          valueFrom:
+                secretKeyRef:
+                  name: group5-mysql-secret
+                  key: password
+        - name: BUCKETNAME
+          valueFrom:
+            configMapKeyRef:
+              name: group5-app-config
+              key: bucket
+        - name: BGIMG
+          valueFrom:
+            configMapKeyRef:
+              name: group5-app-config
+              key: background-img
+                  
+        - name: GRPNAME
+          valueFrom:
+            configMapKeyRef:
+              name: group5-app-config
+              key: groupname
+        
+        command: ["python3", "app.py"]
