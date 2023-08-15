@@ -4,5 +4,5 @@ metadata:
   name: group5-app-config
 data:
   bucket: "brahm-s3"
-  background-img: "Seneca-College.webp"
+  background-img: "image1.png"
   groupname: "Group5"
