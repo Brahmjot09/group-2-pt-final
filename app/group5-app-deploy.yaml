@@ -22,7 +22,7 @@ spec:
         - containerPort: 81
         env:
         - name: DBHOST
-          value: 192.168.8.154
+          value: 192.168.29.173
         - name: DBPORT
           value: "3306"
         - name: DBPWD
